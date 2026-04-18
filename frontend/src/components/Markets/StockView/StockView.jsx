@@ -9,7 +9,7 @@ import TopInfoSection from "./TopInfoSection/TopInfoSection";
 import Pagination from "../../Pagination/Pagination";
 
 const StockView = () => {
-  const socket = useMemo(() => socketIOClient(process.env.REACT_APP_STOCKS_API, { transports: ['websocket', 'polling', 'flashsocket'] }), []);
+  const socket = useMemo(() => socketIOClient(import.meta.env.REACT_APP_STOCKS_API, { transports: ['websocket', 'polling', 'flashsocket'] }), []);
   const errors = useSelector((state) => state.marketErrorsReducer);
   const stocks = useSelector((state) => state.stocksReducer);
   const [isListMode, setIsListMode] = useState(true);

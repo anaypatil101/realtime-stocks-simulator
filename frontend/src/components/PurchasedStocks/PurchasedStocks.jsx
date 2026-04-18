@@ -8,7 +8,7 @@ import PurchaseOverview from "./PurchaseOverview/PurchaseOverview";
 import PurchaseOverviewSkeleton from "./PurchaseOverview/PurchaseOverviewSkeleton";
 
 const PurchasedStocks = () => {
-  const socket = socketIOClient(process.env.REACT_APP_STOCKS_API, { transports: ['websocket', 'polling', 'flashsocket'] });
+  const socket = socketIOClient(import.meta.env.REACT_APP_STOCKS_API, { transports: ['websocket', 'polling', 'flashsocket'] });
   const purchases = useSelector((state) => state.purchasedReducer);
   const dispatch = useDispatch();
 

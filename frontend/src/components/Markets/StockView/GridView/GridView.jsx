@@ -6,8 +6,8 @@ const GridView = (props) => {
   const { socket, filteredStocks } = props;
 
   return (
-    <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+    <div className="py-4">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 items-stretch">
         {!filteredStocks?.length ?
           <GridViewSkeleton />
           :

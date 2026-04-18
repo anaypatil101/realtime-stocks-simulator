@@ -7,7 +7,7 @@ import ShowcaseCardSkeleton from "./ShowcaseCardSkeleton";
 import ShowcaseCard from "./ShowcaseCard";
 
 const Showcase = () => {
-  const socket = socketIOClient(process.env.REACT_APP_STOCKS_API, { transports: ['websocket', 'polling', 'flashsocket'] });
+  const socket = socketIOClient(import.meta.env.REACT_APP_STOCKS_API, { transports: ['websocket', 'polling', 'flashsocket'] });
   const stocks = useSelector((state) => state.stocksReducer);
   const dispatch = useDispatch();
 
@@ -32,7 +32,7 @@ const Showcase = () => {
             Today's Featured Picks
           </span>
         </h2>
-        <div className="flex flex-col items-center justify-center lg:flex-row">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full max-w-4xl mx-auto">
           {!stocks?.length ? <ShowcaseCardSkeleton /> : <ShowcaseCard socket={socket} stocks={stocks} stockOne={stocks[0]} stockTwo={stocks[16]} stockThree={stocks[1]} />}
         </div>
       </div>

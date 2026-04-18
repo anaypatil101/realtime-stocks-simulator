@@ -1,5 +1,5 @@
 {
-  "name": "mock-stocks-api",
+  "name": "realtime-stocks-simulator",
   "type": "module",
   "version": "1.0.0",
   "description": "Socket IO Backend for Stocks",
