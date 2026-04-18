@@ -1,5 +1,5 @@
 {
-  "name": "realtime-stocks-simulator",
+  "name": "realtime-stock-simulator",
   "type": "module",
   "version": "1.0.0",
   "description": "Socket IO Backend for Stocks",
@@ -16,6 +16,7 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "groq-sdk": "^1.1.2",
     "http": "*",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.13",

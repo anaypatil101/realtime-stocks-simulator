@@ -10,5 +10,5 @@ test('if not logged in, there is no welcome username message', () => {
     </BrowserRouter>,
   );
 
-  expect(screen.getByRole('heading', { name: /mock stocks/i })).toHaveTextContent('Mock Stocks');
+  expect(screen.getByRole('heading', { name: /realtime stock simulator/i })).toHaveTextContent('Realtime Stock Simulator');
 });

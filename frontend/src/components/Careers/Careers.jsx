@@ -8,7 +8,7 @@ const Careers = () => {
         <div className="text-center w-full mx-auto py-12 px-4 sm:px-6 lg:py-24 lg:px-8 z-20">
           <h2 className="text-3xl font-extrabold text-black dark:text-white sm:text-4xl">
             <span className="block">
-              Careers at Mock Stocks.
+              Careers at Realtime Stock Simulator.
             </span>
           </h2>
           <p className="text-xl mt-4 max-w-full mx-auto text-gray-400">
@@ -26,7 +26,7 @@ const Careers = () => {
               </div>
               <div class="mt-2">
                 <p class="text-2xl font-bold text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200">Front-End Engineer</p>
-                <p class="mt-2 text-gray-600 dark:text-gray-300">Join the Mock Stocks team as a Front-End Engineer to help us build beautiful and intuitive user-facing systems.</p>
+                <p class="mt-2 text-gray-600 dark:text-gray-300">Join the Realtime Stock Simulator team as a Front-End Engineer to help us build beautiful and intuitive user-facing systems.</p>
               </div>
               <div class="flex items-center justify-between mt-4">
                 <p href="#" class="text-red-600 dark:text-red-400 cursor-not-allowed">Position Unavailable</p>
@@ -44,7 +44,7 @@ const Careers = () => {
               </div>
               <div class="mt-2">
                 <p class="text-2xl font-bold text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200">Back-End Engineer</p>
-                <p class="mt-2 text-gray-600 dark:text-gray-300">Join the Mock Stocks team as a Back-End Engineer to help us build reliable APIs and high-performance infrastructure.</p>
+                <p class="mt-2 text-gray-600 dark:text-gray-300">Join the Realtime Stock Simulator team as a Back-End Engineer to help us build reliable APIs and high-performance infrastructure.</p>
               </div>
               <div class="flex items-center justify-between mt-4">
                 <p href="#" class="text-red-600 dark:text-red-400 cursor-not-allowed">Position Unavailable</p>
@@ -64,7 +64,7 @@ const Careers = () => {
               </div>
               <div class="mt-2">
                 <p class="text-2xl font-bold text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200">DevOps Engineer</p>
-                <p class="mt-2 text-gray-600 dark:text-gray-300">Join the Mock Stocks team as a DevOps Engineer to help us continuously deploy , test, scale and maintain our large scale operations.</p>
+                <p class="mt-2 text-gray-600 dark:text-gray-300">Join the Realtime Stock Simulator team as a DevOps Engineer to help us continuously deploy , test, scale and maintain our large scale operations.</p>
               </div>
               <div class="flex items-center justify-between mt-4">
                 <p href="#" class="text-red-600 dark:text-red-400 cursor-not-allowed">Position Unavailable</p>
@@ -82,7 +82,7 @@ const Careers = () => {
               </div>
               <div class="mt-2">
                 <p class="text-2xl font-bold text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200">Staff Accountant</p>
-                <p class="mt-2 text-gray-600 dark:text-gray-300">Join the Mock Stocks team as a Staff Accountant to help us keep track of our extensive financial and business operations.</p>
+                <p class="mt-2 text-gray-600 dark:text-gray-300">Join the Realtime Stock Simulator team as a Staff Accountant to help us keep track of our extensive financial and business operations.</p>
               </div>
               <div class="flex items-center justify-between mt-4">
                 <p href="#" class="text-red-600 dark:text-red-400 cursor-not-allowed">Position Unavailable</p>
@@ -102,7 +102,7 @@ const Careers = () => {
               </div>
               <div class="mt-2">
                 <p class="text-2xl font-bold text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200">Product Manager</p>
-                <p class="mt-2 text-gray-600 dark:text-gray-300">Join the Mock Stocks team as a Product Manager to oversee our vision, partaking in both engineering and business endeavours.</p>
+                <p class="mt-2 text-gray-600 dark:text-gray-300">Join the Realtime Stock Simulator team as a Product Manager to oversee our vision, partaking in both engineering and business endeavours.</p>
               </div>
               <div class="flex items-center justify-between mt-4">
                 <p href="#" class="text-red-600 dark:text-red-400 cursor-not-allowed">Position Unavailable</p>
@@ -120,7 +120,7 @@ const Careers = () => {
               </div>
               <div class="mt-2">
                 <p class="text-2xl font-bold text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200">Data Scientist</p>
-                <p class="mt-2 text-gray-600 dark:text-gray-300">Join the Mock Stocks team as a Data Scientist to help us analyze the crypto markets for our upcoming decentralized finance project.</p>
+                <p class="mt-2 text-gray-600 dark:text-gray-300">Join the Realtime Stock Simulator team as a Data Scientist to help us analyze the crypto markets for our upcoming decentralized finance project.</p>
               </div>
               <div class="flex items-center justify-between mt-4">
                 <p href="#" class="text-red-600 dark:text-red-400 cursor-not-allowed">Position Unavailable</p>

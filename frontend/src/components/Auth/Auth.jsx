@@ -93,7 +93,7 @@ const Auth = () => {
       <div className="w-full max-w-sm overflow-hidden bg-gray-50 dark:bg-gray-900 rounded-xl shadow-lg">
         <div className="px-6 py-6">
           <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white tracking-tight">
-            Mock Stocks
+            Realtime Stock Simulator
           </h2>
           <h3 className="mt-1 text-lg font-medium text-center text-gray-500 dark:text-gray-400">
             {isSignup ? 'Create an account' : 'Welcome back'}

@@ -1,9 +1,11 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import socketIOClient from "socket.io-client";
 import { useDispatch, useSelector } from 'react-redux';
 import { getStock } from '../../actions/stocks';
+import { fetchStockSignal } from '../../api/index';
 import StockDetailsSkeleton from "./StockDetailsSkeleton";
+import StockSignalCard from "./StockSignalCard";
 import CurrentPrice from "../CurrentPrice/CurrentPrice";
 import PriceChart from "../PriceChart/PriceChart";
 
@@ -16,6 +18,10 @@ const StockDetails = (props) => {
   const stock = useSelector((state) => state.stocksReducer);
   const dispatch = useDispatch();
 
+  const [signalData, setSignalData] = useState(null);
+  const [signalLoading, setSignalLoading] = useState(true);
+  const [signalError, setSignalError] = useState(null);
+
   useEffect(() => {
     dispatch(getStock(id));
   }, [dispatch, id]);
@@ -27,6 +33,16 @@ const StockDetails = (props) => {
     };
   }, [socket]);
 
+  useEffect(() => {
+    if (!id) return;
+    setSignalLoading(true);
+    setSignalError(null);
+    fetchStockSignal(id)
+      .then(({ data }) => setSignalData(data))
+      .catch(() => setSignalError('Unable to load AI signal. Please try again later.'))
+      .finally(() => setSignalLoading(false));
+  }, [id]);
+
   return (
     !stock?._id ?
       <StockDetailsSkeleton />
@@ -34,9 +50,9 @@ const StockDetails = (props) => {
       <div className="bg-white dark:bg-gray-800 pt-24 lg:pt-16 md:pt-32 sm:pt-32">
         <div className="container flex flex-col px-6 py-4 mx-auto space-y-6 lg:py-16 lg:flex-row lg:items-start lg:space-y-0 lg:space-x-6">
 
-          {/* Left — stock info */}
+          {/* Left — stock info + AI signal */}
           <div className="flex flex-col items-start w-full lg:w-1/2">
-            <div className="max-w-lg lg:mx-12">
+            <div className="max-w-lg lg:mx-12 w-full">
               <h1 className="text-3xl font-semibold tracking-tight text-gray-800 dark:text-white lg:text-4xl">
                 {stock.name}{' '}
                 <span className="font-bold">— {stock.exchange} : {stock.ticker}</span>
@@ -88,6 +104,15 @@ const StockDetails = (props) => {
                   />
                 </div>
               </div>
+
+              {/* AI Signal */}
+              <StockSignalCard
+                signal={signalData?.signal}
+                reason={signalData?.reason}
+                disclaimer={signalData?.disclaimer}
+                isLoading={signalLoading}
+                error={signalError}
+              />
             </div>
           </div>
 

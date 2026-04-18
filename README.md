@@ -1,8 +1,8 @@
-# [Mock Stocks Trading Platform](https://epic-swanson-085a9a.netlify.app/)
+# [Realtime Stock Simulator Trading Platform](https://epic-swanson-085a9a.netlify.app/)
 
 ## Overview
 
-Mock Stocks is a trading and investment platform simulation built with the [MERN](https://www.mongodb.com/mern-stack) stack and utilizing [Socket.IO](https://socket.io/) for real time price updates. It is not a reflection of the real world markets and stock performance. You can visit the site [here.](https://epic-swanson-085a9a.netlify.app/)
+Realtime Stock Simulator is a trading and investment platform simulation built with the [MERN](https://www.mongodb.com/mern-stack) stack and utilizing [Socket.IO](https://socket.io/) for real time price updates. It is not a reflection of the real world markets and stock performance. You can visit the site [here.](https://epic-swanson-085a9a.netlify.app/)
 
 ## Table of Contents
 

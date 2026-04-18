@@ -12,11 +12,11 @@ const Guide = () => {
         <div className="text-center w-full mx-auto py-12 px-4 sm:px-6 lg:py-24 lg:px-8 z-20">
           <h2 className="text-3xl font-extrabold text-black dark:text-white sm:text-4xl">
             <span className="block">
-              The Official Mock Stocks Guide.
+              The Official Realtime Stock Simulator Guide.
             </span>
           </h2>
           <p className="text-xl mt-4 max-w-full mx-auto text-gray-400">
-            Follow the guide below to get started with Mock Stocks and invest today!
+            Follow the guide below to get started with Realtime Stock Simulator and invest today!
           </p>
         </div>
       </div>
@@ -24,9 +24,9 @@ const Guide = () => {
         <div className="container px-16 sm:px-32 py-16 sm:py-16 mx-auto">
           <div className="items-center flex flex-col lg:flex-row">
             <div className="lg:w-1/2 dark:bg-gray-900 p-8 rounded-lg shadow">
-              <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Step 1: Log Into Mock Stocks</h2>
+              <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Step 1: Log Into Realtime Stock Simulator</h2>
               <p className="my-4 text-gray-500 dark:text-gray-400 lg:max-w-full">
-                Log in to your Mock Stocks account. If you don't have an account, you can create one by clicking the button below.
+                Log in to your Realtime Stock Simulator account. If you don't have an account, you can create one by clicking the button below.
               </p>
               <Link to="/auth" className="px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-600 rounded-md dark:bg-blue-800 hover:bg-blue-500 dark:hover:bg-blue-700 focus:outline-none focus:bg-blue-500 dark:focus:bg-blue-700">
                 Login

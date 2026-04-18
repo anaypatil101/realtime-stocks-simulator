@@ -24,6 +24,7 @@ export const removeUser = () => api.delete('/user/removeuser');
 // available market stocks
 export const fetchStocks = () => api.get('/stocks');
 export const fetchStock = (id) => api.get(`/stocks/${id}`);
+export const fetchStockSignal = (id) => api.get(`/stocks/${id}/signal`);
 
 // user bought stocks
 export const purchasedStocks = () => api.get('/purchased');

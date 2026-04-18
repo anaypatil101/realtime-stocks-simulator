@@ -7,10 +7,10 @@ const About = () => {
       <div className="container px-16 sm:px-32 py-16 sm:py-24 mx-auto">
         <div className="items-center lg:flex">
           <div className="lg:w-1/2">
-            <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-100">What is Mock Stocks?</h2>
+            <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-100">What is Realtime Stock Simulator?</h2>
 
             <p className="mt-4 text-gray-500 dark:text-gray-400 lg:max-w-full">
-              Mock Stocks is a trading platform simulation with real time quotes and investment monitoring. It is not a reflection of how the real stock markets work and prices here are not reflective of the real world.
+              Realtime Stock Simulator is a trading platform simulation with real time quotes and investment monitoring. It is not a reflection of how the real stock markets work and prices here are not reflective of the real world.
             </p>
           </div>
 

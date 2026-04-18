@@ -1,6 +1,6 @@
 {
-  "short_name": "Mock Stocks FrontEnd",
-  "name": "Mock Stocks FrontEnd",
+  "short_name": "Realtime Stock Sim",
+  "name": "Realtime Stock Simulator",
   "icons": [],
   "start_url": ".",
   "display": "standalone",

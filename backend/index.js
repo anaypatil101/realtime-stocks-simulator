@@ -10,6 +10,7 @@ import { Server } from 'socket.io';
 
 // api functions and routes
 import stockRoutes from './routes/stocks.js';
+import signalRoutes from './routes/signal.js';
 import userRoutes from './routes/users.js';
 import purchasedStockRoutes from './routes/purchased_stocks.js';
 import actionLogRoutes from './routes/action_logs.js';
@@ -36,6 +37,7 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
 app.use('/stocks', stockRoutes);
+app.use('/stocks', signalRoutes);
 app.use('/user', userRoutes);
 app.use('/purchased', purchasedStockRoutes);
 app.use('/logs', actionLogRoutes);
