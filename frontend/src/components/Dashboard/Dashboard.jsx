@@ -1,13 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import General from "./General/General";
 import Account from "./Account/Account";
 import Insights from "./Insights/Insights";
 import Transactions from "./Transactions/Transactions";
 import Logs from "./Logs/Logs";
+import AddFunds from "./AddFunds/AddFunds";
 
 const Dashboard = () => {
   const [user] = useState(JSON.parse(localStorage.getItem('profile')));
-  const [currentTab, setCurrentTab] = useState("Account");
+  const location = useLocation();
+  const [currentTab, setCurrentTab] = useState(() => {
+    const params = new URLSearchParams(location.search);
+    return params.get('tab') === 'addfunds' ? 'AddFunds' : 'Account';
+  });
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    if (params.get('tab') === 'addfunds') setCurrentTab('AddFunds');
+  }, [location.search]);
 
   const shownTab = (tab) => {
     switch (tab) {
@@ -21,6 +32,8 @@ const Dashboard = () => {
         return <Transactions />
       case "Logs":
         return <Logs />
+      case "AddFunds":
+        return <AddFunds user={user} />
       default:
         return <Account />;
     }
@@ -64,6 +77,18 @@ const Dashboard = () => {
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                             </svg>
                             Account
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li onClick={() => setCurrentTab("AddFunds")} className={currentTab === "AddFunds" ? "flex flex-row my-2 bg-blue-300 dark:bg-blue-900 hover:bg-blue-400 dark:hover:bg-blue-700 rounded" : "flex flex-row my-2 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded"}>
+                      <div className="select-none cursor-pointer flex flex-1 items-center p-4">
+                        <div className="flex-1 pl-1 mr-16">
+                          <div className="font-medium dark:text-white flex flex-row items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            Add Funds
                           </div>
                         </div>
                       </div>

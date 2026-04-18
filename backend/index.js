@@ -15,6 +15,7 @@ import userRoutes from './routes/users.js';
 import purchasedStockRoutes from './routes/purchased_stocks.js';
 import actionLogRoutes from './routes/action_logs.js';
 import transactionRoutes from './routes/transactions.js';
+import paymentRoutes from './routes/payment.js';
 import { tickers } from './web_sockets/tickers.js';
 
 // environment configuration
@@ -42,6 +43,7 @@ app.use('/user', userRoutes);
 app.use('/purchased', purchasedStockRoutes);
 app.use('/logs', actionLogRoutes);
 app.use('/transactions', transactionRoutes);
+app.use('/payment', paymentRoutes);
 app.get('*', (req, res) => {
   res.status(404).sendFile(__dirname + '/not_found.html');
 });

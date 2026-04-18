@@ -7,7 +7,14 @@ import { AUTH_ERROR_OCCURRED } from '../../constants/actions';
 const initialState = { firstName: '', lastName: '', email: '', password: '' };
 
 const inputClass =
-  'block w-full px-4 py-2 mt-2 text-sm text-gray-700 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-500 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent dark:focus:ring-blue-500 transition-colors duration-150';
+  'block w-full px-4 py-2.5 text-sm text-gray-800 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:focus:ring-blue-500 transition-colors duration-150';
+
+const Spinner = () => (
+  <svg className="animate-spin h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+  </svg>
+);
 
 const Auth = () => {
   const errors = useSelector((state) => state.authErrorsReducer);
@@ -89,19 +96,31 @@ const Auth = () => {
   };
 
   return (
-    <div className="font-inter bg-white dark:bg-gray-800 min-h-screen flex items-center justify-center px-4">
-      <div className="w-full max-w-sm overflow-hidden bg-gray-50 dark:bg-gray-900 rounded-xl shadow-lg">
-        <div className="px-6 py-6">
-          <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white tracking-tight">
-            Realtime Stock Simulator
-          </h2>
-          <h3 className="mt-1 text-lg font-medium text-center text-gray-500 dark:text-gray-400">
-            {isSignup ? 'Create an account' : 'Welcome back'}
-          </h3>
+    <div className="font-inter min-h-screen bg-gray-50 dark:bg-gray-950 flex items-center justify-center px-4 py-12">
+      <div className="w-full max-w-sm">
 
-          <form onSubmit={handleSubmit} name="auth_form" className="mt-5 space-y-4">
+        {/* Header */}
+        <div className="mb-8 text-center">
+          <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 mb-4">
+            <svg className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+            </svg>
+          </span>
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+            {isSignup ? 'Create your account' : 'Welcome back'}
+          </h2>
+          <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+            {isSignup
+              ? 'Start with $100,000 in virtual currency.'
+              : 'Sign in to continue to your portfolio.'}
+          </p>
+        </div>
+
+        {/* Card */}
+        <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-800 px-8 py-8">
+          <form onSubmit={handleSubmit} name="auth_form" className="space-y-3">
             {isSignup && (
-              <>
+              <div className="grid grid-cols-2 gap-3">
                 <input
                   className={inputClass}
                   required
@@ -120,7 +139,7 @@ const Auth = () => {
                   name="lastName"
                   onChange={handleChange}
                 />
-              </>
+              </div>
             )}
 
             <input
@@ -143,78 +162,63 @@ const Auth = () => {
             />
 
             {errors && (
-              <div className="flex overflow-hidden bg-white dark:bg-gray-800 border border-red-200 dark:border-red-800 rounded-lg">
-                <div className="flex items-center justify-center w-10 shrink-0 bg-red-500 dark:bg-red-700">
-                  <svg className="w-5 h-5 text-white fill-current" viewBox="0 0 40 40">
-                    <path d="M20 3.36667C10.8167 3.36667 3.3667 10.8167 3.3667 20C3.3667 29.1833 10.8167 36.6333 20 36.6333C29.1834 36.6333 36.6334 29.1833 36.6334 20C36.6334 10.8167 29.1834 3.36667 20 3.36667ZM19.1334 33.3333V22.9H13.3334L21.6667 6.66667V17.1H27.25L19.1334 33.3333Z" />
-                  </svg>
-                </div>
-                <p className="px-3 py-2 text-sm text-red-600 dark:text-red-300">{errors}</p>
+              <div className="flex items-start gap-2.5 px-3.5 py-2.5 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800">
+                <svg className="h-4 w-4 text-red-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <p className="text-xs text-red-600 dark:text-red-300 leading-relaxed">{errors}</p>
               </div>
             )}
 
             <button
               type="submit"
-              className="w-full flex items-center justify-center px-4 py-2 text-sm font-semibold text-white bg-gray-800 dark:bg-gray-600 rounded-lg hover:bg-gray-700 dark:hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors duration-150"
+              disabled={isLoading && !errors}
+              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900 disabled:opacity-60 disabled:cursor-not-allowed transition-colors duration-150"
             >
-              {isLoading && !errors && (
-                <svg
-                  className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                </svg>
-              )}
-              {isSignup ? 'Create Account' : 'Login'}
+              {isLoading && !errors && <Spinner />}
+              {isSignup ? 'Create Account' : 'Sign In'}
             </button>
           </form>
 
+          {/* Divider */}
           <div className="flex items-center gap-3 my-5">
-            <span className="flex-1 border-t border-gray-300 dark:border-gray-600" />
-            <span className="text-xs text-gray-400 dark:text-gray-500 uppercase tracking-wide whitespace-nowrap">
-              or continue as guest
-            </span>
-            <span className="flex-1 border-t border-gray-300 dark:border-gray-600" />
+            <span className="flex-1 border-t border-gray-200 dark:border-gray-700" />
+            <span className="text-xs text-gray-400 dark:text-gray-500 uppercase tracking-wide whitespace-nowrap">or</span>
+            <span className="flex-1 border-t border-gray-200 dark:border-gray-700" />
           </div>
 
+          {/* Guest login */}
           <form onSubmit={handleSubmitGuestAccount}>
             <button
               type="submit"
-              className="w-full flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 transition-colors duration-150"
+              disabled={isLoadingGuest && !errors}
+              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 dark:focus:ring-offset-gray-900 disabled:opacity-60 disabled:cursor-not-allowed transition-colors duration-150"
             >
-              {isLoadingGuest && !errors && (
-                <svg
-                  className="animate-spin h-4 w-4 text-white"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
+              {isLoadingGuest && !errors ? (
+                <svg className="animate-spin h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24">
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                 </svg>
+              ) : (
+                <svg className="h-4 w-4 text-gray-500 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
               )}
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-              </svg>
-              Try with Guest Account
+              Continue as Guest
             </button>
           </form>
         </div>
 
-        <div className="flex items-center justify-center gap-2 py-4 bg-gray-100 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
-          <span className="text-sm text-gray-500 dark:text-gray-400">
-            {!isSignup ? "Don't have an account?" : 'Already have an account?'}
-          </span>
+        {/* Switch mode */}
+        <p className="mt-5 text-center text-sm text-gray-500 dark:text-gray-400">
+          {isSignup ? 'Already have an account?' : "Don't have an account?"}{' '}
           <button
             onClick={switchMode}
-            className="text-sm font-semibold text-blue-500 dark:text-blue-400 hover:text-blue-400 dark:hover:text-blue-300 transition-colors duration-150"
+            className="font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition-colors duration-150"
           >
-            {!isSignup ? 'Register' : 'Login'}
+            {isSignup ? 'Sign in' : 'Register'}
           </button>
-        </div>
+        </p>
       </div>
     </div>
   );

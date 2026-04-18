@@ -36,5 +36,9 @@ export const removePurchasedStock = (id) => api.delete(`/purchased/${id}`);
 // transactions
 export const fetchTransactions = () => api.get('/transactions');
 
+// payments / top-up
+export const createPaymentOrder = (packageId) => api.post('/payment/create-order', { packageId });
+export const verifyPayment = (payload) => api.post('/payment/verify', payload);
+
 //logs
 export const fetchLogs = () => api.get('/logs');

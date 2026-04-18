@@ -2,8 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import CurrentPrice from '../CurrentPrice/CurrentPrice';
 import PriceChart from '../PriceChart/PriceChart';
+import { isGuestUser } from '../../utils/isGuest';
 
 const StockCard = ({ socket, stock }) => {
+  const guest = isGuestUser();
   return (
     <div className="w-full h-full flex flex-col overflow-hidden bg-white dark:bg-gray-900 rounded-xl shadow-md">
 
@@ -50,12 +52,21 @@ const StockCard = ({ socket, stock }) => {
 
       {/* Action buttons — pinned to the bottom */}
       <div className="shrink-0 flex items-center justify-center gap-2 px-4 py-3 border-t border-gray-100 dark:border-gray-800">
-        <Link
-          to={`/transaction/${stock._id}`}
-          className="flex-1 text-center py-2 text-sm font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-500 dark:hover:bg-blue-700 focus:outline-none transition-colors duration-150"
-        >
-          Buy
-        </Link>
+        {guest ? (
+          <Link
+            to="/auth"
+            className="flex-1 text-center py-2 text-sm font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900 focus:outline-none transition-colors duration-150"
+          >
+            Register to Buy
+          </Link>
+        ) : (
+          <Link
+            to={`/transaction/${stock._id}`}
+            className="flex-1 text-center py-2 text-sm font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-500 dark:hover:bg-blue-700 focus:outline-none transition-colors duration-150"
+          >
+            Buy
+          </Link>
+        )}
         <Link
           to={`/stock/${stock._id}`}
           className="flex-1 text-center py-2 text-sm font-semibold text-white bg-gray-500 dark:bg-gray-700 rounded-lg hover:bg-gray-600 dark:hover:bg-gray-600 focus:outline-none transition-colors duration-150"

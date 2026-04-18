@@ -8,9 +8,11 @@ import StockDetailsSkeleton from "./StockDetailsSkeleton";
 import StockSignalCard from "./StockSignalCard";
 import CurrentPrice from "../CurrentPrice/CurrentPrice";
 import PriceChart from "../PriceChart/PriceChart";
+import { isGuestUser } from '../../utils/isGuest';
 
 const StockDetails = (props) => {
   const { id } = props;
+  const guest = isGuestUser();
   const socket = useMemo(
     () => socketIOClient(import.meta.env.REACT_APP_STOCKS_API, { transports: ['websocket', 'polling', 'flashsocket'] }),
     []
@@ -173,12 +175,21 @@ const StockDetails = (props) => {
                 </div>
 
                 <div className="flex flex-wrap gap-2 pt-3">
-                  <Link
-                    to={`/transaction/${stock._id}`}
-                    className="flex-1 text-center px-4 py-2 text-sm font-semibold text-white bg-blue-500 dark:bg-blue-700 rounded-lg hover:bg-blue-600 dark:hover:bg-blue-600 focus:outline-none transition-colors duration-150"
-                  >
-                    Buy
-                  </Link>
+                  {guest ? (
+                    <Link
+                      to="/auth"
+                      className="flex-1 text-center px-4 py-2 text-sm font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900 focus:outline-none transition-colors duration-150"
+                    >
+                      Register to Buy
+                    </Link>
+                  ) : (
+                    <Link
+                      to={`/transaction/${stock._id}`}
+                      className="flex-1 text-center px-4 py-2 text-sm font-semibold text-white bg-blue-500 dark:bg-blue-700 rounded-lg hover:bg-blue-600 dark:hover:bg-blue-600 focus:outline-none transition-colors duration-150"
+                    >
+                      Buy
+                    </Link>
+                  )}
                   <Link
                     to="/markets"
                     className="flex-1 text-center px-4 py-2 text-sm font-semibold text-white bg-gray-400 dark:bg-gray-700 rounded-lg hover:bg-gray-500 dark:hover:bg-gray-600 focus:outline-none transition-colors duration-150"

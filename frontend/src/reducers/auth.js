@@ -1,4 +1,4 @@
-import { AUTH, DELETE_USER, LOGOUT, USER_INFO, USER_UPDATE_NAME } from '../constants/actions';
+import { AUTH, COINS_TOPPED_UP, DELETE_USER, LOGOUT, USER_INFO, USER_UPDATE_NAME } from '../constants/actions';
 
 // handle user actions
 const authReducer = (state = { authData: null }, action) => {
@@ -19,6 +19,12 @@ const authReducer = (state = { authData: null }, action) => {
       userObjectNewName.result.name = action?.data.name;
       localStorage.setItem('profile', JSON.stringify(userObjectNewName));
       return { ...state, authData: action.data, errors: null };
+    case COINS_TOPPED_UP: {
+      const userObjectTopup = JSON.parse(localStorage.getItem("profile"));
+      userObjectTopup.result.coins = action?.data.coins;
+      localStorage.setItem('profile', JSON.stringify(userObjectTopup));
+      return { ...state, authData: { ...state.authData, coins: action?.data.coins }, errors: null };
+    }
     case DELETE_USER:
       localStorage.removeItem('profile');
       return { ...state, authData: null, errors: null };

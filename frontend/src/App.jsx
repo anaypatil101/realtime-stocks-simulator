@@ -14,7 +14,7 @@ import PurchasedStockDetails from "./components/PurchasedStockDetails/PurchasedS
 import Dashboard from "./components/Dashboard/Dashboard";
 import Guide from "./components/Guide/Guide";
 import Careers from "./components/Careers/Careers";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 
 const App = () => {
   return (
@@ -26,12 +26,15 @@ const App = () => {
           <Route exact path='/guide' render={() => (<Guide />)} />
           <Route exact path='/careers' render={() => (<Careers />)} />
           <Route exact path='/markets' render={() => (<Markets />)} />
-          <Route exact path='/auth' render={() => (<Auth />)} />
+          <Route exact path='/auth' render={() => {
+            const profile = localStorage.getItem('profile');
+            return profile ? <Redirect to='/' /> : <Auth />;
+          }} />
           <Route exact path='/stock/:id' render={(props) => (<StockDetails id={props.match.params.id} />)} />
-          <ProtectedRoute exact path='/dashboard' comp={Dashboard} />
-          <ProtectedRoute exact path='/purchased' comp={PurchasedStocks} />
-          <ProtectedRoute exact path='/purchased/:id' comp={PurchasedStockDetails} />
-          <ProtectedRoute exact path='/transaction/:id' comp={TransactionForm} />
+          <ProtectedRoute exact path='/dashboard' comp={Dashboard} noGuest />
+          <ProtectedRoute exact path='/purchased' comp={PurchasedStocks} noGuest />
+          <ProtectedRoute exact path='/purchased/:id' comp={PurchasedStockDetails} noGuest />
+          <ProtectedRoute exact path='/transaction/:id' comp={TransactionForm} noGuest />
           <Route render={() => (<NotFound />)} />
         </Switch>
         <Footer />

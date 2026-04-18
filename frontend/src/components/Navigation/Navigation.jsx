@@ -6,8 +6,10 @@ import ToggleTheme from '../ToggleTheme/ToggleTheme';
 import { getUserInfo } from "../../actions/auth";
 import { LOGOUT } from '../../constants/actions';
 import DefaultAvatarImage from '../../assets/images/avatar.jpg';
+import { isGuestUser } from '../../utils/isGuest';
 
 const Navigation = () => {
+	const guest = isGuestUser();
 	const dispatch = useDispatch();
 	const location = useLocation();
 	const history = useHistory();
@@ -97,7 +99,7 @@ const Navigation = () => {
 							<NavLink onClick={() => setMenuHidden(true)} exact to="/" activeClassName="text-blue-500 dark:text-blue-400 font-bold" className="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700">Home</NavLink>
 							<NavLink onClick={() => setMenuHidden(true)} exact to="/guide" activeClassName="text-blue-500 dark:text-blue-400 font-bold" className="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700">Guide</NavLink>
 							<NavLink onClick={() => setMenuHidden(true)} exact to="/markets" activeClassName="text-blue-500 dark:text-blue-400 font-bold" className="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700">Markets</NavLink>
-							{user?.result && <NavLink onClick={() => setMenuHidden(true)} exact to="/purchased" activeClassName="text-blue-500 dark:text-blue-400 font-bold" className="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700">Investments</NavLink>}
+							{user?.result && !guest && <NavLink onClick={() => setMenuHidden(true)} exact to="/purchased" activeClassName="text-blue-500 dark:text-blue-400 font-bold" className="px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700">Investments</NavLink>}
 							{user?.result ?
 								<>
 									<Link onClick={() => setMenuHidden(true)} to="/dashboard">
@@ -115,7 +117,12 @@ const Navigation = () => {
 											</span>
 										</div>
 									</Link>
-									<button onClick={() => { setMenuHidden(true); logout(); }} className="w-full md:hidden block mt-6 px-3 py-2 mx-1 text-sm font-medium leading-5 text-center text-white transition-colors duration-200 transform bg-blue-500 dark:bg-gray-600 rounded-md hover:bg-blue-600 dark:hover:bg-gray-700 md:mx-2 md:w-auto">Logout</button>
+									{!guest && (
+										<Link onClick={() => setMenuHidden(true)} to="/dashboard?tab=addfunds" className="w-full md:hidden block mt-2 px-3 py-2 mx-1 text-sm font-medium leading-5 text-center text-white transition-colors duration-200 transform bg-green-600 dark:bg-green-700 rounded-md hover:bg-green-500 dark:hover:bg-green-600 md:mx-2 md:w-auto">
+											+ Add Funds
+										</Link>
+									)}
+									<button onClick={() => { setMenuHidden(true); logout(); }} className="w-full md:hidden block mt-2 px-3 py-2 mx-1 text-sm font-medium leading-5 text-center text-white transition-colors duration-200 transform bg-blue-500 dark:bg-gray-600 rounded-md hover:bg-blue-600 dark:hover:bg-gray-700 md:mx-2 md:w-auto">Logout</button>
 								</>
 								:
 								<Link onClick={() => setMenuHidden(true)} to="/auth" className="md:hidden block mt-6 px-3 py-2 mx-1 text-sm font-medium leading-5 text-center text-white transition-colors duration-200 transform bg-blue-500 dark:bg-gray-600 rounded-md hover:bg-blue-600 dark:hover:bg-gray-700 md:mx-2 md:w-auto">Login / Register</Link>
@@ -133,6 +140,12 @@ const Navigation = () => {
 											${user?.result.coins.toFixed(2)}
 										</span>
 									</span>
+
+									{!guest && (
+									<Link to="/dashboard?tab=addfunds" className="ml-1 mr-2 px-2.5 py-1 text-xs font-semibold text-white bg-green-600 dark:bg-green-700 rounded-full hover:bg-green-500 dark:hover:bg-green-600 transition-colors duration-150 whitespace-nowrap">
+										+ Add Funds
+									</Link>
+								)}
 
 									<span className="sm:w-full px-2 py-1 mr-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200">{String(user?.result.name).split(" ")[0] || String(user?.result.name).split(" ")[1]}</span>
 

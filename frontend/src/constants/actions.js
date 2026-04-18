@@ -23,6 +23,9 @@ export const GET_ALL_TRANSACTIONS = 'GET_ALL_TRANSACTIONS';
 //logs
 export const GET_ALL_LOGS = 'GET_ALL_LOGS';
 
+//payment actions
+export const COINS_TOPPED_UP = 'COINS_TOPPED_UP';
+
 //error actions
 export const AUTH_ERROR_OCCURRED = 'AUTH_ERROR_OCCURRED';
 export const MARKET_ERROR_OCCURRED = 'MARKET_ERROR_OCCURRED';
